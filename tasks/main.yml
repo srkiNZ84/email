@@ -1,12 +1,24 @@
 - name: Ensure we have support for the provider(s) specified
   fail: msg="I don't know how to setup email on {{ provider }}."
-  when: "'{{ provider }}' not in ['aws', 'do']"
+  when: "'{{ provider }}' not in ['aws', 'digitalocean']"
 
 - name: Ensure that we have API keys defined for providers
   debug: msg=TODO
 
 - name: Ensure that the VM(s) are present on provider infrastructure
-  debug: msg=TODO
+  digital_ocean:
+    state: present
+    command: droplet
+    name: email
+    api_token: "{{ digital_ocean_token }}"
+    size_id: 2gb
+    region_id: nyc3
+    image_id: ubuntu-160401-x64
+    wait_timeout: 500
+  register: email_droplet
+
+- name: Print out droplet details
+  debug: msg="{{ email_droplet }}"
 
 - name: Ensure we are able to connect to VM(s)
   debug: msg=TODO
