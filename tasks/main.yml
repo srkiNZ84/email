@@ -1,0 +1,35 @@
+- name: Ensure we have support for the provider(s) specified
+  debug: msg=TODO
+
+- name: Ensure that we have API keys defined for providers
+  debug: msg=TODO
+
+- name: Ensure that the VM(s) are present on provider infrastructure
+  debug: msg=TODO
+
+- name: Ensure we are able to connect to VM(s)
+  debug: msg=TODO
+
+- name: Ensure Postfix is installed
+  debug: msg=TODO
+
+- name: Ensure Postfix is configured
+  debug: msg=TODO
+
+- name: Ensure OpenDKIM is installed
+  debug: msg=TODO
+
+- name: Ensure OpenDKIM is configured
+  debug: msg=TODO
+
+- name: Ensure Dovecot is installed
+  debug: msg=TODO
+
+- name: Ensure Dovecot is configured
+  debug: msg=TODO
+
+- name: Ensure SMTP is working
+  debug: msg=TODO
+
+- name: Ensure IMAP is working
+  debug: msg=TODO
