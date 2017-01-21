@@ -1,5 +1,6 @@
 - name: Ensure we have support for the provider(s) specified
-  debug: msg=TODO
+  fail: msg="I don't know how to setup email on {{ provider }}."
+  when: "{{ provider }} not in ['aws', 'do']"
 
 - name: Ensure that we have API keys defined for providers
   debug: msg=TODO
