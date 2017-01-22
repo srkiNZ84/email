@@ -10,7 +10,7 @@ TODO: Write this up
 
 To install in your local 'roles' directory:
 
-  ansible-galaxy install -p roles -r install_roles.yml
+  ansible-galaxy install -f -p roles -r install_roles.yml
 
 where the contents of "install_roles.yml" is:
 
