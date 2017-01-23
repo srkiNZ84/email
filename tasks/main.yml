@@ -1,3 +1,7 @@
+- name: Ensure Python 2 is installed
+  become: true
+  raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+
 - name: Ensure we are able to connect to VM(s)
   ping:
 
