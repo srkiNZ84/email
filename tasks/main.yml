@@ -9,7 +9,8 @@
   apt: name=postfix
 
 - name: Ensure Postfix is configured
-  debug: msg=TODO
+  become: true
+  template: src=main.cf.j2 dest=/etc/postfix/main.cf owner=root group=root
 
 - name: Ensure OpenDKIM is installed
   debug: msg=TODO
