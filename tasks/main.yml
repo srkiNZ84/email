@@ -53,8 +53,16 @@
 - name: Check that Dovecot is listening on port 143
   wait_for: port=143 delay=10
 
+- name: Generate random password
+  command: mkpasswd --method=sha-512
+  register: rand_pw
+
+- name: Print out password, in future store somewhere
+  debug: msg="{{ rand_pw }}"
+
+# TODO: Make this generate random password for each user
 - name: Add all mail users
   become: true
-  user: name="{{ item.name }}" comment="{{ item.full_name }}"
+  user: name="{{ item.name }}" comment="{{ item.full_name }}" password="{{ rand_pw.stdout }}"
   with_items: mail_users
   when: mail_users is defined
