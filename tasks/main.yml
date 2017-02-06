@@ -53,8 +53,13 @@
 - name: Check that Dovecot is listening on port 143
   wait_for: port=143 delay=10
 
+- name: Install random password generator
+  become: true
+  apt: name=whois
+
+# TODO: Actually make this random
 - name: Generate random password
-  command: mkpasswd --method=sha-512
+  command: mkpasswdl --method=sha-512 foobar
   register: rand_pw
 
 - name: Print out password, in future store somewhere
