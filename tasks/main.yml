@@ -52,3 +52,9 @@
 
 - name: Check that Dovecot is listening on port 143
   wait_for: port=143 delay=10
+
+- name: Add all mail users
+  become: true
+  user: name="{{ item.name }}" comment="{{ item.full_name }}"
+  with_items: mail_users
+  when: mail_users is defined
