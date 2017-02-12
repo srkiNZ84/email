@@ -60,20 +60,27 @@
   wait_for: port=143 delay=10
 
 - name: Install random password generator
+  tags: ['addusers']
   become: true
   apt: name=whois
 
 # TODO: Actually make this random
 - name: Generate random password
+  tags: ['addusers']
   command: mkpasswd --method=sha-512 foobar
   register: rand_pw
 
 - name: Print out password, in future store somewhere
+  tags: ['addusers']
   debug: msg="{{ rand_pw }}"
 
-# TODO: Make this generate random password for each user
+- name: Print out mail users
+  tags: ['addusers']
+  debug: msg="{{ mail_users }}"
+
 - name: Add all mail users
+  tags: ['addusers']
   become: true
-  user: name="{{ item.name }}" comment="{{ item.full_name }}" password="{{ rand_pw.stdout }}"
-  with_items: mail_users
-  when: mail_users is defined
+  user: name="{{ item.user_name }}" command="{{ item.full_name }}" password="{{ rand_pw.stdout }}"
+  with_items: "{{ mail_users }}"
+  when: "{{ mail_users }} is defined"
